@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>حكايتنا ❤️</title>
+<meta name="description" content="هدية رقمية رومانسية تفاعلية">
+
+<!-- خطوط عربية أنيقة: خط عرض كلاسيكي فخم + خط نص عصري واضح -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- خلفية النجوم العامة، تظهر خلف كل الأقسام -->
+<canvas id="starfield"></canvas>
+<div id="floating-hearts-layer" aria-hidden="true"></div>
+
+<!-- زر التحكم بالموسيقى -->
+<button id="music-toggle" class="music-btn" aria-label="تشغيل الموسيقى">
+    <span class="music-icon">♪</span>
+</button>
+<audio id="bg-music" loop preload="none"></audio>
+
+<!-- ============ 1) شاشة البداية ============ -->
+<section id="screen-opening" class="screen active">
+    <div class="opening-content">
+        <p class="opening-line" id="opening-line"></p>
+        <button class="btn btn-primary" id="btn-start">
+            <span id="btn-start-text">ابدئي الحكاية</span> <span class="heart-emoji">❤️</span>
+        </button>
+    </div>
+</section>
+
+<!-- ============ 2) البداية الرومانسية / عيد الميلاد ============ -->
+<section id="screen-hero" class="screen">
+    <div class="hero-image-wrap">
+        <div class="hero-image" id="hero-image" role="img" aria-label="صورة تذكارية"></div>
+        <div class="hero-image-glow"></div>
+    </div>
+    <div class="hero-text">
+        <h1 class="display-title" id="hero-title"></h1>
+        <p class="hero-date" id="hero-date"></p>
+        <button class="btn btn-outline" id="btn-hero-next">اضغطي هنا...</button>
+    </div>
+</section>
+
+<!-- ============ 3) معرض الصور / الذكريات ============ -->
+<section id="screen-gallery" class="screen">
+    <h2 class="section-title" id="gallery-title"></h2>
+    <div class="gallery-wrap" id="gallery-wrap"></div>
+    <button class="btn btn-primary scroll-next" data-next="screen-messages">التالي</button>
+</section>
+
+<!-- ============ 4) الرسائل المتتالية ============ -->
+<section id="screen-messages" class="screen">
+    <h2 class="section-title" id="messages-title"></h2>
+    <div class="messages-wrap" id="messages-wrap"></div>
+    <button class="btn btn-primary" id="btn-messages-next" style="display:none;"></button>
+</section>
+
+<!-- ============ 5) القلب التفاعلي ============ -->
+<section id="screen-heart" class="screen">
+    <canvas id="heart-particles"></canvas>
+    <p class="heart-hint" id="heart-hint"></p>
+    <div class="heart-wrap" id="heart-wrap">
+        <svg id="main-heart" viewBox="0 0 32 29" class="main-heart">
+            <path d="M23.6,0c-3.4,0-6.3,2.1-7.6,5C14.7,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,15.6,19.8,16,20.2c0.4-0.4,16-10.7,16-20.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+        <div class="heart-glow"></div>
+    </div>
+    <p class="heart-message" id="heart-message"></p>
+    <button class="btn btn-outline" id="btn-heart-next" style="display:none;">التالي</button>
+</section>
+
+<!-- ============ 6) الرسالة السرية ============ -->
+<section id="screen-secret" class="screen">
+    <h2 class="section-title" id="secret-title"></h2>
+    <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+            <span class="envelope-heart">❤</span>
+        </div>
+    </div>
+    <button class="btn btn-primary" id="btn-open-secret"></button>
+    <p class="secret-message" id="secret-message"></p>
+    <button class="btn btn-outline scroll-next" id="btn-secret-next" data-next="screen-counter" style="display:none;">التالي</button>
+</section>
+
+<!-- ============ 7) عداد الذكريات ============ -->
+<section id="screen-counter" class="screen">
+    <h2 class="section-title" id="counter-title"></h2>
+    <p class="counter-subtitle" id="counter-subtitle"></p>
+    <div class="counter-grid" id="counter-grid">
+        <div class="counter-box"><span class="counter-num" id="count-days">0</span><span class="counter-label">يوم</span></div>
+        <div class="counter-box"><span class="counter-num" id="count-hours">0</span><span class="counter-label">ساعة</span></div>
+        <div class="counter-box"><span class="counter-num" id="count-minutes">0</span><span class="counter-label">دقيقة</span></div>
+        <div class="counter-box"><span class="counter-num" id="count-seconds">0</span><span class="counter-label">ثانية</span></div>
+    </div>
+    <button class="btn btn-primary scroll-next" data-next="screen-timeline">التالي</button>
+</section>
+
+<!-- ============ 8) الخط الزمني ============ -->
+<section id="screen-timeline" class="screen">
+    <h2 class="section-title" id="timeline-title"></h2>
+    <div class="timeline-wrap" id="timeline-wrap"></div>
+    <button class="btn btn-primary scroll-next" data-next="screen-ending">التالي</button>
+</section>
+
+<!-- ============ 9) المفاجأة النهائية ============ -->
+<section id="screen-ending" class="screen">
+    <p class="ending-line" id="ending-line-1"></p>
+    <p class="ending-line ending-line-2" id="ending-line-2" style="opacity:0;"></p>
+    <button class="btn btn-primary" id="btn-final-surprise"></button>
+
+    <div class="final-content" id="final-content">
+        <canvas id="final-canvas"></canvas>
+        <p class="final-message" id="final-message"></p>
+        <p class="final-name" id="final-name"></p>
+        <p class="final-note" id="final-note"></p>
+        <p class="final-signature" id="final-signature"></p>
+        <button class="btn btn-outline" id="btn-goto-surprise" style="display:none;"></button>
+    </div>
+</section>
+
+<!-- ============ 10) التورطة الكبيرة (الهدية الأخيرة) ============ -->
+<section id="screen-surprise" class="screen">
+    <p class="surprise-hint" id="surprise-hint"></p>
+
+    <div class="gift-box" id="gift-box">
+        <div class="gift-glow"></div>
+        <div class="gift-lid">
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-bow">
+                <span></span><span></span>
+            </div>
+        </div>
+        <div class="gift-base">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+        </div>
+    </div>
+
+    <p class="surprise-prompt" id="surprise-prompt"></p>
+
+    <div class="surprise-reveal" id="surprise-reveal">
+        <p class="surprise-message" id="surprise-message"></p>
+        <button class="btn btn-primary" id="btn-goto-video-surprise" style="display:none;"></button>
+    </div>
+</section>
+
+<!-- ============ 11) التورطة الثانية (فيديو المفاجأة) ============ -->
+<section id="screen-video-surprise" class="screen">
+    <p class="surprise-hint" id="video-surprise-hint"></p>
+
+    <div class="pop-trigger" id="pop-trigger">
+        <div class="pop-glow"></div>
+        <svg viewBox="0 0 32 29" class="pop-heart">
+            <path d="M23.6,0c-3.4,0-6.3,2.1-7.6,5C14.7,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,15.6,19.8,16,20.2c0.4-0.4,16-10.7,16-20.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+    </div>
+    <p class="surprise-prompt" id="video-surprise-prompt"></p>
+
+    <div class="pop-flash" id="pop-flash"></div>
+
+    <div class="video-frame" id="video-frame">
+        <button class="video-close" id="video-close" aria-label="إغلاق">✕</button>
+        <video id="surprise-video" playsinline controls></video>
+    </div>
+</section>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
