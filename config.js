@@ -9,9 +9,9 @@
 const CONFIG = {
 
     /* ---------- المعلومات الأساسية ---------- */
-    name: "حبيبتي",                 // اسم الشخص الذي تُهدى له التجربة
-    yourName: "من قلبي",            // توقيعك أنت في نهاية الموقع
-    startDate: "2020-01-01",        // تاريخ بداية القصة (يُستخدم في عداد الذكريات)
+    name: "مرام",                 // اسم الشخص الذي تُهدى له التجربة
+    yourName: "من احمد",            // توقيعك أنت في نهاية الموقع
+    startDate: "2022-09-11",        // تاريخ بداية القصة (يُستخدم في عداد الذكريات)
 
     /* ---------- شاشة البداية ---------- */
     openingLine: "لدي شيء صغير أريد أن أهديه لك...",
@@ -20,35 +20,35 @@ const CONFIG = {
     /* ---------- قسم عيد الميلاد / البداية ---------- */
     heroTitle: "كل سنة وأنتِ أجمل شيء حدث لي",
     heroDateLabel: "عيد ميلاد سعيد",
-    heroDate: "29 أغسطس",
+    heroDate: "9/4",
     heroButton: "اضغطي هنا",
 
     /* ---------- قسم معرض الصور ---------- */
-    galleryTitle: "ذكريات صغيرة... تعني لي كل شيء",
+    galleryTitle: "ذكريات صغيرة....",
     photos: [
         {
-            src: "assets/images/photo1.jpg",
-            caption: "أجمل ذكرياتي تبدأ منك"
+            src: "https://i.postimg.cc/wjdqkL6H/IMG-20260829-WA0010.jpg",
+            caption: ""
         },
         {
-            src: "assets/images/photo2.jpg",
-            caption: "وجودك يجعل كل شيء أجمل"
+            src: "https://i.postimg.cc/4Np7ZJyd/IMG-20260829-WA0016.jpg",
+            caption: ""
         },
         {
-            src: "assets/images/photo3.jpg",
-            caption: "أتمنى أن أعيش معك ألف ذكرى أخرى"
+            src: "https://i.postimg.cc/d3yF2tpf/IMG-20260829-WA0013.jpg",
+            caption: ""
         },
         {
-            src: "assets/images/photo4.jpg",
-            caption: "أنتِ الجزء الجميل من أيامي"
+            src: "https://i.postimg.cc/K8rZpjj2/IMG-20260829-WA0011.jpg",
+            caption: ""
         },
         {
-            src: "assets/images/photo5.jpg",
-            caption: "كل صورة هنا تحمل حكاية"
+            src: "https://i.postimg.cc/9MNXPkM0/IMG-20260829-WA0008.jpg",
+            caption: ""
         },
         {
-            src: "assets/images/photo6.jpg",
-            caption: "ولسه فيه ذكريات جاية أجمل"
+            src: "https://i.postimg.cc/FHmfH2Jv/IMG-20260829-WA0017.jpg",
+            caption: ""
         }
     ],
 
@@ -63,9 +63,9 @@ const CONFIG = {
     messagesButton: "هناك شيء آخر",
 
     /* ---------- القلب التفاعلي ---------- */
-    heartPrompt: "اضغطي على قلبي",
-    heartFirstMessage: "هذا القلب اختار شخصًا واحدًا...",
-    heartSecondMessage: "أنتِ",
+    heartPrompt: "اضغطي على القلب",
+    heartFirstMessage: "",
+    heartSecondMessage: "",
     heartFinalLine: "كنتِ دائمًا السبب في أن هذا القلب ينبض.",
 
     /* ---------- الرسالة السرية ---------- */
@@ -82,43 +82,43 @@ const CONFIG = {
     counterSubtitle: "مرت على حكايتنا",
 
     /* ---------- الخط الزمني Timeline ---------- */
-    timelineTitle: "حكايتنا... خطوة بخطوة",
+    timelineTitle: "... خطوة بخطوة",
     timeline: [
         {
-            label: "البداية",
-            date: "يناير 2020",
-            message: "يوم بدأت كل الحكاية، بدون سابق إنذار.",
-            image: "assets/images/photo1.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/PxZhZ5B6/WA-1788004619761.jpg"
         },
         {
-            label: "أول ذكرى",
-            date: "مارس 2020",
-            message: "أول مرة حسّيت إن فيه حاجة حلوة بتحصل.",
-            image: "assets/images/photo2.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/MpPWJ47p/WA-1788004567706.jpg"
         },
         {
-            label: "أجمل يوم",
-            date: "يوليو 2021",
-            message: "يوم لسه فاكره كل تفصيلة فيه.",
-            image: "assets/images/photo3.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/0NXrZjXq/IMG-20260829-WA0019.jpg"
         },
         {
-            label: "أصعب لحظة",
-            date: "نوفمبر 2022",
-            message: "لحظة عدّيناها مع بعض، وطلعنا منها أقوى.",
-            image: "assets/images/photo4.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/mDqR1FXH/IMG-20260829-WA0014.jpg"
         },
         {
-            label: "اللحظة التي لن أنساها",
-            date: "مايو 2024",
-            message: "لحظة هتفضل محفورة في قلبي للأبد.",
-            image: "assets/images/photo5.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/PqSdh711/IMG-20260829-WA0012.jpg"
         },
         {
-            label: "اليوم",
-            date: "الآن",
-            message: "لسه بنكتب الحكاية سوا، يوم بعد يوم.",
-            image: "assets/images/photo6.jpg"
+            label: "",
+            date: "",
+            message: "",
+            image: "https://i.postimg.cc/yxMVtS04/IMG-20260829-WA0009.jpg"
         },
         {
             label: "والباقي لم يُكتب بعد...",
@@ -132,8 +132,8 @@ const CONFIG = {
     endingLine1: "وصلنا للنهاية...",
     endingLine2: "أم أنني كذبت؟",
     endingButton: "آخر مفاجأة",
-    finalMessage: "كل سنة وأنتِ في قلبي،\nوكل سنة والحكاية بيننا أجمل.",
-    finalNote: "هذه الهدية بسيطة...\nلكن كل شيء فيها اختارته لكِ قلبي.",
+    finalMessage: "كل سنة وأنتِ جنبي،\nوكل سنة والحكاية بيننا أجمل.",
+    finalNote: "هذه الهدية بسيطة...\nلكن كل شيء فيها اختارته لكِ .",
 
     /* ---------- التورطة الكبيرة الأخيرة (صندوق الهدية) ---------- */
     surpriseNextButton: "التالي",
@@ -142,15 +142,15 @@ const CONFIG = {
     surpriseMessage:
         "مكنش المفروض أقولها كده بس خلاص هقولها،\n" +
         "أنا مبسوط جدًا إنك موجودة في حياتي،\n" +
-        "وكل يوم بحمد ربنا إنه رزقني بيكِ.\n\n" +
+        "وكل يوم بحمد ربنا إنه رزقني بيكِ وعوضتيني عن شعور الاخوه و اجمل اخت\n\n" +
         "دي مش النهاية... دي بس بداية حاجات كتير أجمل جاية.\n" +
-        "بحبك ❤️",
+        "اجمل اخت ربنا رزقني بيها",
     surpriseAfterButton: "التالي",
 
     /* ---------- التورطة الثانية (فيديو المفاجأة) ---------- */
     videoSurpriseHint: "لسه فيه تورطة كمان...",
     videoSurprisePrompt: "دوسي هنا 🎉",
-    videoSurpriseSrc: "assets/video/surprise.mp4",
+    videoSurpriseSrc: "https://videotourl.com/videos/1788006267625-c70e08f8-f176-4470-a8c7-68a86274893b.mp4",
 
     /* ---------- الموسيقى ---------- */
     musicSrc: "assets/music/romantic.mp3",
