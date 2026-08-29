@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>مرامزز ❤️</title>
+<title>حكايتنا ❤️</title>
 <meta name="description" content="هدية رقمية رومانسية تفاعلية">
 
 <!-- خطوط عربية أنيقة: خط عرض كلاسيكي فخم + خط نص عصري واضح -->
@@ -14,6 +14,22 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- ============ شاشة التحميل الترحيبية ============ -->
+<div id="preloader">
+    <canvas id="preloader-stars"></canvas>
+    <div class="preloader-content">
+        <div class="preloader-logo">
+            <img id="preloader-logo-img" alt="الشعار" style="display:none;">
+            <svg id="preloader-logo-svg" viewBox="0 0 32 29" class="preloader-heart">
+                <path d="M23.6,0c-3.4,0-6.3,2.1-7.6,5C14.7,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,15.6,19.8,16,20.2c0.4-0.4,16-10.7,16-20.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>
+        </div>
+        <p class="preloader-name" id="preloader-name"></p>
+        <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-bar-fill"></div></div>
+        <p class="preloader-status" id="preloader-status"></p>
+    </div>
+</div>
 
 <!-- خلفية النجوم العامة، تظهر خلف كل الأقسام -->
 <canvas id="starfield"></canvas>
