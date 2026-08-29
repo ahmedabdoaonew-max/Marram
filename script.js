@@ -177,6 +177,130 @@
     }
 
     /* ---------------------------------------------------------
+       شاشة التحميل الترحيبية (Preloader)
+    --------------------------------------------------------- */
+    function initPreloaderStars() {
+        const canvas = $("#preloader-stars");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        let stars = [];
+        let w, h;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            const count = Math.floor((w * h) / 7000);
+            stars = Array.from({ length: count }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 1.6 + 0.4,
+                baseAlpha: Math.random() * 0.7 + 0.2,
+                phase: Math.random() * Math.PI * 2,
+                speed: Math.random() * 0.02 + 0.006
+            }));
+        }
+
+        function draw(t) {
+            if (!document.body.contains(canvas)) return;
+            ctx.clearRect(0, 0, w, h);
+            for (const s of stars) {
+                const alpha = s.baseAlpha + Math.sin(t * s.speed + s.phase) * 0.3;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(253,250,246,${Math.max(0, alpha)})`;
+                ctx.fill();
+            }
+            const pre = $("#preloader");
+            if (pre && !pre.classList.contains("hide")) {
+                requestAnimationFrame(draw);
+            }
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+        requestAnimationFrame(draw);
+    }
+
+    function collectPreloadImageUrls() {
+        const urls = new Set();
+        if (CONFIG.logoSrc) urls.add(CONFIG.logoSrc);
+        if (CONFIG.photos) CONFIG.photos.forEach((p) => p && p.src && urls.add(p.src));
+        if (CONFIG.timeline) CONFIG.timeline.forEach((t) => t && t.image && urls.add(t.image));
+        return Array.from(urls);
+    }
+
+    function initPreloader() {
+        initPreloaderStars();
+
+        $("#preloader-name").textContent = CONFIG.preloaderTitle || CONFIG.name || "";
+        $("#preloader-status").textContent = CONFIG.preloaderStatus || "";
+
+        if (CONFIG.logoSrc) {
+            const img = $("#preloader-logo-img");
+            img.src = CONFIG.logoSrc;
+            img.style.display = "block";
+            $("#preloader-logo-svg").style.display = "none";
+        }
+
+        const urls = collectPreloadImageUrls();
+        const total = urls.length || 1;
+        let loaded = 0;
+        const bar = $("#preloader-bar-fill");
+
+        function bump() {
+            loaded++;
+            const pct = Math.min(100, Math.round((loaded / total) * 100));
+            if (bar) bar.style.width = pct + "%";
+        }
+
+        const imagePromises = urls.map(
+            (src) =>
+                new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        bump();
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        bump();
+                        resolve();
+                    };
+                    img.src = src;
+                })
+        );
+
+        const fontsPromise =
+            document.fonts && document.fonts.ready
+                ? document.fonts.ready.catch(() => {})
+                : Promise.resolve();
+
+        const startTime = Date.now();
+        const MIN_DISPLAY_MS = 1200;
+        const HARD_CAP_MS = 9000;
+
+        function finishLoading() {
+            if (!bar) return;
+            bar.style.width = "100%";
+            const elapsed = Date.now() - startTime;
+            const wait = Math.max(0, MIN_DISPLAY_MS - elapsed);
+            setTimeout(hidePreloader, wait);
+        }
+
+        function hidePreloader() {
+            const pre = $("#preloader");
+            if (pre && !pre.classList.contains("hide")) {
+                pre.classList.add("hide");
+            }
+        }
+
+        Promise.all([...imagePromises, fontsPromise]).then(finishLoading);
+
+        // شبكة أمان: لو حاجة اتعلقت (شبكة بطيئة جدًا مثلًا)، امنعي الشاشة من
+        // البقاء متوقفة للأبد
+        setTimeout(hidePreloader, HARD_CAP_MS);
+    }
+
+    /* ---------------------------------------------------------
        1) شاشة البداية
     --------------------------------------------------------- */
     function initOpening() {
@@ -714,6 +838,7 @@
        التشغيل
     --------------------------------------------------------- */
     document.addEventListener("DOMContentLoaded", () => {
+        initPreloader();
         fillStaticText();
         initStarfield();
         initFloatingHearts();
