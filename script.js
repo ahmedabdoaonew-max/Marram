@@ -629,6 +629,11 @@
             frame.classList.remove("show");
             video.pause();
         });
+
+        // إخفاء الفيديو تلقائيًا بمجرد ما يخلص
+        video.addEventListener("ended", () => {
+            frame.classList.remove("show");
+        });
     }
 
     function playFinalConfetti() {
